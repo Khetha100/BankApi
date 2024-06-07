@@ -7,6 +7,7 @@ public class BankContext : DbContext
     public DbSet<AccountHolder> AccountHolders { get; set; }
     public DbSet<BankAccount> BankAccounts { get; set; }
     public DbSet<Withdrawal> Withdrawals { get; set; }
+    public DbSet<BankAccountAudit> BankAccountAudits { get; set; }
 
     public BankContext(DbContextOptions<BankContext> options) : base(options) { }
 

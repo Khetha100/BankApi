@@ -1,7 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.EntityFrameworkCore;
-using BankApi.Data;
 using BankApi.Models;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,9 +13,9 @@ using System.Threading.Tasks;
 [Authorize]
 public class BankAccountsController : ControllerBase
 {
-    private readonly ApplicationDbContext _context;
+    private readonly BankContext _context;
 
-    public BankAccountsController(ApplicationDbContext context)
+    public BankAccountsController(BankContext context)
     {
         _context = context;
     }
