@@ -26,7 +26,7 @@ Installation
 
     bash
 
-git clone https://github.com/yourusername/BankApi.git
+git clone https://github.com/Khetha100/BankApi.git
 
 Navigate to the project directory:
 
