@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using BankApi.Models;
 
+
 public class BankContext : DbContext
 {
     public DbSet<AccountHolder> AccountHolders { get; set; }

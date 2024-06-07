@@ -13,4 +13,5 @@ public class BankAccount
     [Column(TypeName = "decimal(18, 2)")]
     public decimal AvailableBalance { get; set; }
     public int AccountHolderId { get; set; }
+    public AccountHolder? AccountHolder { get; set; }
 }

@@ -9,8 +9,10 @@ namespace BankApi.Data
     {
         public ApplicationDbContext CreateDbContext(string[] args)
         {
+            var basePath = Path.GetFullPath(Path.Combine(Directory.GetCurrentDirectory(), @"./"));
+
             var configuration = new ConfigurationBuilder()
-                .SetBasePath(Directory.GetCurrentDirectory())
+                .SetBasePath(basePath)
                 .AddJsonFile("appsettings.json")
                 .Build();
 
@@ -22,3 +24,4 @@ namespace BankApi.Data
         }
     }
 }
+

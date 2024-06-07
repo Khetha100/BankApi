@@ -142,3 +142,4 @@
 /home/khetha/personal_projects/BankApi/obj/Debug/net8.0/BankApi.pdb
 /home/khetha/personal_projects/BankApi/obj/Debug/net8.0/BankApi.genruntimeconfig.cache
 /home/khetha/personal_projects/BankApi/obj/Debug/net8.0/ref/BankApi.dll
+/home/khetha/personal_projects/BankApi/obj/Debug/net8.0/BankApi.sourcelink.json
