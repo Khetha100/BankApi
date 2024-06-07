@@ -22,7 +22,7 @@ namespace BankApi.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("AccountHolder", b =>
+            modelBuilder.Entity("BankApi.Models.AccountHolder", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -39,7 +39,7 @@ namespace BankApi.Migrations
                     b.Property<string>("FirstName")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("IDNumber")
+                    b.Property<string>("IdNumber")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("LastName")
@@ -53,10 +53,10 @@ namespace BankApi.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("AccountHolders");
+                    b.ToTable("AccountHolders", (string)null);
                 });
 
-            modelBuilder.Entity("BankAccount", b =>
+            modelBuilder.Entity("BankApi.Models.BankAccount", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -70,23 +70,14 @@ namespace BankApi.Migrations
                     b.Property<string>("AccountNumber")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("AccountType")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<decimal>("AvailableBalance")
-                        .HasColumnType("decimal(18, 2)");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Status")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<decimal>("Balance")
+                        .HasColumnType("decimal(18,2)");
 
                     b.HasKey("Id");
 
                     b.HasIndex("AccountHolderId");
 
-                    b.ToTable("BankAccounts");
+                    b.ToTable("BankAccounts", (string)null);
                 });
 
             modelBuilder.Entity("BankApi.Models.BankAccountAudit", b =>
@@ -110,34 +101,12 @@ namespace BankApi.Migrations
 
                     b.HasIndex("BankAccountId");
 
-                    b.ToTable("BankAccountAudits");
+                    b.ToTable("BankAccountAudits", (string)null);
                 });
 
-            modelBuilder.Entity("BankApi.Models.Withdrawal", b =>
+            modelBuilder.Entity("BankApi.Models.BankAccount", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<decimal>("Amount")
-                        .HasColumnType("decimal(18, 2)");
-
-                    b.Property<int>("BankAccountId")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("Date")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Withdrawals");
-                });
-
-            modelBuilder.Entity("BankAccount", b =>
-                {
-                    b.HasOne("AccountHolder", "AccountHolder")
+                    b.HasOne("BankApi.Models.AccountHolder", "AccountHolder")
                         .WithMany("BankAccounts")
                         .HasForeignKey("AccountHolderId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -148,8 +117,8 @@ namespace BankApi.Migrations
 
             modelBuilder.Entity("BankApi.Models.BankAccountAudit", b =>
                 {
-                    b.HasOne("BankAccount", "BankAccount")
-                        .WithMany()
+                    b.HasOne("BankApi.Models.BankAccount", "BankAccount")
+                        .WithMany("Audits")
                         .HasForeignKey("BankAccountId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -157,9 +126,14 @@ namespace BankApi.Migrations
                     b.Navigation("BankAccount");
                 });
 
-            modelBuilder.Entity("AccountHolder", b =>
+            modelBuilder.Entity("BankApi.Models.AccountHolder", b =>
                 {
                     b.Navigation("BankAccounts");
+                });
+
+            modelBuilder.Entity("BankApi.Models.BankAccount", b =>
+                {
+                    b.Navigation("Audits");
                 });
 #pragma warning restore 612, 618
         }

@@ -86,7 +86,7 @@ namespace BankApi.Migrations.Bank
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<decimal>("AvailableBalance")
-                        .HasColumnType("decimal(18,2)");
+                        .HasColumnType("decimal(18, 2)");
 
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
@@ -142,7 +142,7 @@ namespace BankApi.Migrations.Bank
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<decimal>("Amount")
-                        .HasColumnType("decimal(18,2)");
+                        .HasColumnType("decimal(18, 2)");
 
                     b.Property<int>("BankAccountId")
                         .HasColumnType("int");
@@ -151,8 +151,6 @@ namespace BankApi.Migrations.Bank
                         .HasColumnType("datetime2");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("BankAccountId");
 
                     b.ToTable("Withdrawals");
                 });
@@ -166,17 +164,6 @@ namespace BankApi.Migrations.Bank
                         .IsRequired();
 
                     b.Navigation("AccountHolder");
-                });
-
-            modelBuilder.Entity("BankApi.Models.Withdrawal", b =>
-                {
-                    b.HasOne("BankAccount", "BankAccount")
-                        .WithMany()
-                        .HasForeignKey("BankAccountId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("BankAccount");
                 });
 
             modelBuilder.Entity("AccountHolder", b =>
