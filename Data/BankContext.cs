@@ -2,18 +2,44 @@ using Microsoft.EntityFrameworkCore;
 using BankApi.Models;
 
 
+/// <summary>
+/// Represents the database context for the Bank API.
+/// </summary>
 public class BankContext : DbContext
 {
+    /// <summary>
+    /// Gets or sets the DbSet for AccountHolders.
+    /// </summary>
     public DbSet<AccountHolder> AccountHolders { get; set; }
+
+    /// <summary>
+    /// Gets or sets the DbSet for BankAccounts.
+    /// </summary>
     public DbSet<BankAccount> BankAccounts { get; set; }
+
+    /// <summary>
+    /// Gets or sets the DbSet for Withdrawals.
+    /// </summary>
     public DbSet<Withdrawal> Withdrawals { get; set; }
+
+    /// <summary>
+    /// Gets or sets the DbSet for BankAccountAudits.
+    /// </summary>
     public DbSet<BankAccountAudit> BankAccountAudits { get; set; }
 
+    /// <summary>
+    /// Initializes a new instance of the BankContext class.
+    /// </summary>
+    /// <param name="options">The options to be used by the context.</param>
     public BankContext(DbContextOptions<BankContext> options) : base(options) { }
 
+    /// <summary>
+    /// Configures the database with initial data when the model is being created.
+    /// </summary>
+    /// <param name="modelBuilder">The model builder instance.</param>
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        // Initial data
+        // Initial data seeding
         modelBuilder.Entity<AccountHolder>().HasData(new AccountHolder
         {
             Id = 1,
@@ -60,3 +86,4 @@ public class BankContext : DbContext
         });
     }
 }
+

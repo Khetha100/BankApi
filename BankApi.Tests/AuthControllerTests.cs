@@ -5,8 +5,14 @@ using Moq;
 using Xunit;
 using System.Collections.Generic;
 
+/// <summary>
+/// Unit tests for the AuthController class.
+/// </summary>
 public class AuthControllerTests
 {
+    /// <summary>
+    /// Test method to verify that Login returns a token when credentials are valid.
+    /// </summary>
     [Fact]
     public void Login_ReturnsToken_WhenCredentialsAreValid()
     {
@@ -36,6 +42,9 @@ public class AuthControllerTests
         Assert.NotNull(result.Value);
     }
 
+    /// <summary>
+    /// Test method to verify that Login returns Unauthorized when credentials are invalid.
+    /// </summary>
     [Fact]
     public void Login_ReturnsUnauthorized_WhenCredentialsAreInvalid()
     {

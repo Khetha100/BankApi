@@ -6,8 +6,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-
-
+/// <summary>
+/// Controller for managing bank accounts.
+/// </summary>
 [Route("api/[controller]")]
 [ApiController]
 [Authorize]
@@ -15,11 +16,20 @@ public class BankAccountsController : ControllerBase
 {
     private readonly BankContext _context;
 
+    /// <summary>
+    /// Initializes a new instance of the BankAccountsController class.
+    /// </summary>
+    /// <param name="context">The database context.</param>
     public BankAccountsController(BankContext context)
     {
         _context = context;
     }
 
+    /// <summary>
+    /// Retrieves bank accounts for a specific account holder.
+    /// </summary>
+    /// <param name="accountHolderId">The ID of the account holder.</param>
+    /// <returns>A list of bank accounts associated with the account holder.</returns>
     [HttpGet("AccountHolder/{accountHolderId}")]
     public async Task<ActionResult<IEnumerable<BankAccount>>> GetBankAccountsByHolder(int accountHolderId)
     {
@@ -28,6 +38,11 @@ public class BankAccountsController : ControllerBase
             .ToListAsync();
     }
 
+    /// <summary>
+    /// Retrieves a bank account by its account number.
+    /// </summary>
+    /// <param name="accountNumber">The account number of the bank account.</param>
+    /// <returns>The bank account with the specified account number.</returns>
     [HttpGet("{accountNumber}")]
     public async Task<ActionResult<BankAccount>> GetBankAccount(string accountNumber)
     {
@@ -42,6 +57,11 @@ public class BankAccountsController : ControllerBase
         return account;
     }
 
+    /// <summary>
+    /// Processes a withdrawal from a bank account.
+    /// </summary>
+    /// <param name="withdrawal">The withdrawal details.</param>
+    /// <returns>The result of the withdrawal operation.</returns>
     [HttpPost("Withdraw")]
     public async Task<ActionResult> Withdraw([FromBody] Withdrawal withdrawal)
     {

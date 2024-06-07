@@ -11,8 +11,14 @@ using Xunit;
 
 namespace BankApi.Tests
 {
+    /// <summary>
+    /// Unit tests for the BankAccountsController class.
+    /// </summary>
     public class BankAccountsControllerTests
     {
+        /// <summary>
+        /// Test method to verify that GetBankAccountsByHolder returns the correct accounts.
+        /// </summary>
         [Fact]
         public async Task GetBankAccountsByHolder_ReturnsAccounts()
         {
@@ -39,6 +45,9 @@ namespace BankApi.Tests
             }
         }
 
+        /// <summary>
+        /// Test method to verify that GetBankAccount returns the correct account.
+        /// </summary>
         [Fact]
         public async Task GetBankAccount_ReturnsAccount()
         {
@@ -64,6 +73,9 @@ namespace BankApi.Tests
             }
         }
 
+        /// <summary>
+        /// Test method to verify that GetBankAccount returns NotFound for a non-existent account.
+        /// </summary>
         [Fact]
         public async Task GetBankAccount_ReturnsNotFound_ForNonExistentAccount()
         {
@@ -81,6 +93,9 @@ namespace BankApi.Tests
             }
         }
 
+        /// <summary>
+        /// Test method to verify that Withdraw returns Ok for a valid withdrawal.
+        /// </summary>
         [Fact]
         public async Task Withdraw_ReturnsOk_ForValidWithdrawal()
         {
@@ -106,6 +121,9 @@ namespace BankApi.Tests
             }
         }
 
+        /// <summary>
+        /// Test method to verify that Withdraw returns NotFound for a non-existent account.
+        /// </summary>
         [Fact]
         public async Task Withdraw_ReturnsNotFound_ForNonExistentAccount()
         {
@@ -125,4 +143,3 @@ namespace BankApi.Tests
         }
     }
 }
-
